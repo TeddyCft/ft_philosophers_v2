@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 14:57:20 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 16:11:37 by tcoeffet         ###   ########.fr       */
+/*   Created: 2024/11/08 13:24:01 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/07/18 17:20:09 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+/* The strlen() function calculates the length of the string pointed to by s,
+excluding the terminating null byte ('\0'). */
 
-# include <stdio.h>
-# include <pthread.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "proto.h"
+#include "philo.h"
 
-#endif
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+/*
+#include<stdio.h>
+int	main()
+{
+	printf("%d", ft_strlen("test"));
+}
+*/

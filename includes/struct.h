@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:58:36 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 15:22:45 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/18 15:37:32 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_data
 	int	time_eat;
 	int	time_die;
 	int	nb_philo;
+	int	eat_goal;
 
 }	t_data;
 
