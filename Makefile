@@ -11,7 +11,10 @@ INCLUDES =	./includes
 CC = $(QUIET) cc
 FLAGS = -Wall -Wextra -Werror -MMD -MP -g -pthread
 
-FILES =		init \
+FILES =		args \
+			init \
+			routine \
+			utils \
 			utils/ft_isdigit \
 			utils/ft_strncmp \
 			utils/ft_atoi \
