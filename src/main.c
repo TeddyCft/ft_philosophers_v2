@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:00:08 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 17:23:12 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/18 19:26:25 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	debug_print_struct(t_data *data)
 {
-	printf("nb_philo = %d\n", data->nb_philo);
+	printf("nb_philo = %d \n", data->nb_philo);
 	printf("time_die %d\n", data->time_die);
 	printf("time_slp %d\n", data->time_slp);
 	printf("time_eat %d\n", data->time_eat);
@@ -32,7 +32,10 @@ int	main(int argc, char **argv)
 	if (arg_check(argc, argv) || init_simulation(argc, argv, data))
 		return (free(data), 1);
 	debug_print_struct(data);
-	// simulation();
+	while (data->sim)
+		;
+	printf("%s[%ld] sim is over !\n%s", \
+		CLR_RED, get_sim_time(data->start), CLR_CLOSE);
 	free(data);
 	return (0);
 }

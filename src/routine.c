@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   proto.h                                            :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/18 14:58:14 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 19:16:44 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/07/18 19:10:58 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/07/18 19:28:12 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROTO_H
-# define PROTO_H
+#include "philo.h"
 
-# include "struct.h"
+void	*routine(void *arg)
+{
+	t_philo	*philo;
 
-size_t	ft_strlen(const char *str);
-int		ft_isdigit(int c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_atoi(const char *nptr);
-
-int		init_simulation(int ac, char **av, t_data *data);
-int		arg_check(int ac, char **av);
-
-size_t	get_sim_time(size_t start);
-
-void	*routine(void *arg);
-
-#endif
+	philo = arg;
+	while (!philo->data->sim)
+		;
+	printf("%s[%ld] philo n[%d] started%s\n", \
+		CLR_BLUE, get_sim_time(philo->data->start), philo->id, CLR_CLOSE);
+	return (NULL);
+}
