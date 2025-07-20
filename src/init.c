@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:24:06 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/20 23:52:21 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:53:10 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	create_forks(t_data *data)
 		pthread_mutex_init(&data->fork[i], NULL);
 		i++;
 	}
+	return (0);
 }
 
 int	init_simulation(int ac, char **av, t_data *data)
