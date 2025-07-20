@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:00:08 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 19:26:25 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:26:03 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 		return (write(STDERR_FILENO, "philo : malloc failed\n", 1));
 	if (arg_check(argc, argv) || init_simulation(argc, argv, data))
 		return (free(data), 1);
-	debug_print_struct(data);
+	//debug_print_struct(data);
 	while (data->sim)
 		;
 	printf("%s[%ld] sim is over !\n%s", \

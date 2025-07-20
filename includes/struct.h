@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:58:36 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 20:17:20 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/20 23:51:27 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,13 @@ typedef enum e_status
 	S_DEAD
 }		t_status;
 
-typedef struct s_rules
-{
-
-}		t_rules;
-
 typedef struct s_philo
 {
-	pthread_mutex_t	fork_mtx;
+	pthread_mutex_t	left;
+	pthread_mutex_t	right;
 	struct s_data	*data;
 	enum e_status	status;
 	pthread_t		thread;
-	t_rules			rules;
-	size_t			start;
 	size_t			last_meal;
 	int				id;
 	int				meal_count;
@@ -42,6 +36,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
+	pthread_mutex_t	*fork;
 	t_philo			*philos;
 	int				time_slp;
 	int				time_eat;
