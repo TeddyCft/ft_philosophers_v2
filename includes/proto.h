@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:58:14 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 20:40:48 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 01:55:58 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	*routine(void *arg);
 
 size_t	get_sim_time(size_t start);
 void	print_status(t_philo *philo);
+void	print_fork(t_philo *philo);
 void	get_usleep(t_philo *philo, t_status stat);
+
+void	monitoring(t_data *data);
 
 #endif

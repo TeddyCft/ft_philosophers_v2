@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:24:06 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/20 23:53:10 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 01:55:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,10 @@ int	create_philos(t_data *data)
 		data->philos[i].meal_count = 0;
 		data->philos[i].status = S_START;
 		data->philos[i].data = data;
-		if (i == 0)
-			data->philos->left = data->fork[data->nb_philo];
-		else
-			data->philos->left = data->fork[i - 1];
-		if (i == data->nb_philo)
-			data->philos->right = data->fork[0];
-		else
-			data->philos->right = data->fork[i + 1];
+		data->philos[i].right = data->fork[i];
+		data->philos[i].left = data->fork[i + 1];
+		if (i + 1 == data->nb_philo)
+			data->philos[i].left = data->fork[0];
 		i++;
 	}
 	return (0);
@@ -59,15 +55,35 @@ int	create_forks(t_data *data)
 	int	i;
 
 	i = 0;
-	data->fork = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
+	data->fork = malloc(sizeof(pthread_mutex_t *) * data->nb_philo);
 	if (!data->fork)
 		return (write(STDERR_FILENO, "philo : malloc failed\n", 23), 1);
 	while (i < data->nb_philo)
 	{
-		pthread_mutex_init(&data->fork[i], NULL);
+		data->fork[i] = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
+		if (!data->fork[i])
+		{
+			while (i > 0)
+			{
+				i--;
+				free(data->fork[i]);
+			}
+			free(data->fork);
+			return (1);
+		}
+		pthread_mutex_init(data->fork[i], NULL);
 		i++;
 	}
 	return (0);
+}
+
+void	set_data_status(t_data *data, int n)
+{
+	while (n)
+	{
+		n--;
+		data->status[n] = S_START;
+	}
 }
 
 int	init_simulation(int ac, char **av, t_data *data)
@@ -83,14 +99,15 @@ int	init_simulation(int ac, char **av, t_data *data)
 	if (!data->nb_philo || !data->time_die || !data->time_eat || \
 		!data->time_slp || (ac == 6 && !data->eat_goal))
 		return (write(STDERR_FILENO, "philo : argument 0 is invalid\n", 31), 1);
+	data->status = malloc(sizeof(t_status) * data->nb_philo);
+	if (!data->status)
+		return (write(STDERR_FILENO, "philo : malloc failed\n", 23), 1);
+	set_data_status(data, data->nb_philo);
 	if (create_forks(data))
-		return (1);
+		return (free(data->status), 1);
 	if (create_philos(data))
-		return (free(data->fork), 1);
+		return (free(data->status), free(data->fork), 1);
 	launch_routines(data);
-	data->start = get_sim_time(0);
 	data->sim = 1;
-	usleep(15000);
-	data->sim = 0;
 	return (0);
 }
