@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:58:36 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 19:26:01 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/18 20:17:20 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_philo
 	enum e_status	status;
 	pthread_t		thread;
 	t_rules			rules;
+	size_t			start;
 	size_t			last_meal;
 	int				id;
 	int				meal_count;

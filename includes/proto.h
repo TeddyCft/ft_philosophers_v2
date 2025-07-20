@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:58:14 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 19:16:44 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/18 20:40:48 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int		ft_atoi(const char *nptr);
 int		init_simulation(int ac, char **av, t_data *data);
 int		arg_check(int ac, char **av);
 
-size_t	get_sim_time(size_t start);
-
 void	*routine(void *arg);
+
+size_t	get_sim_time(size_t start);
+void	print_status(t_philo *philo);
+void	get_usleep(t_philo *philo, t_status stat);
 
 #endif

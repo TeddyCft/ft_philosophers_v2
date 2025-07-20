@@ -6,11 +6,51 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:29:43 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 18:32:24 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/18 20:38:27 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	get_usleep(t_philo *philo, t_status stat)
+{
+	t_data	*data;
+
+	data = philo->data;
+	if (stat == S_EAT)
+	{	
+		if (data->time_die > data->time_eat)
+			usleep(data->time_eat * 1000);
+		else
+			usleep(data->time_die * 1000);
+	}
+	if (stat == S_SLEEP)
+	{
+		if (data->time_die > data->time_eat + data->time_slp)
+			usleep(data->time_slp * 1000);
+		else
+			usleep((data->time_die - data->time_eat) * 1000);
+	}
+}
+
+void	print_status(t_philo *philo)
+{
+	t_status	stat;
+	size_t		time;
+	int			id;
+
+	id = philo->id;
+	time = get_sim_time(philo->start);
+	stat = philo->status;
+	if (stat == S_DEAD)
+		printf("%s %ld %d died %s\n", CLR_RED, time, id, CLR_CLOSE);
+	if (stat == S_EAT)
+		printf("%s %ld %d is eating %s\n", CLR_CYAN, time, id, CLR_CLOSE);
+	if (stat == S_SLEEP)
+		printf("%s %ld %d is sleeping %s\n", CLR_BLUE, time, id, CLR_CLOSE);
+	if (stat == S_THINK)
+		printf("%s %ld %d is thinking %s\n", CLR_YELLOW, time, id, CLR_CLOSE);
+}
 
 size_t	get_sim_time(size_t start)
 {
