@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:00:08 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 01:55:41 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 02:35:20 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 	if (arg_check(argc, argv) || init_simulation(argc, argv, data))
 		return (free(data), 1);
 	monitoring(data);
-	printf("%s[%ld] sim is over !\n%s", \
+	printf("%s[%ld] Simulation is over !\n%s", \
 		CLR_RED, get_sim_time(data->philos[0].start), CLR_CLOSE);
 	clear_data(data);
 	return (0);

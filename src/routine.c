@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 19:10:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 01:26:47 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 02:35:10 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,24 @@ void	take_forks(t_philo *philo, t_data *data)
 	else
 		pthread_mutex_lock(philo->right);
 	philo->status = S_FORK;
+	print_status(philo);
 	if (is_last)
 		pthread_mutex_lock(philo->right);
 	else
 		pthread_mutex_lock(philo->left);
+}
+
+int	is_fed(t_philo *philo)
+{
+	philo->meal_count++;
+	if (philo->meal_count == philo->data->eat_goal)
+	{
+		philo->data->sim = 0;
+		printf("%sphilosopher %d had %d meals !%s\n", \
+			CLR_GREEN, philo->id, philo->meal_count, CLR_CLOSE);
+		return (1);
+	}
+	return (0);
 }
 
 void	*routine(void *arg)
@@ -36,17 +50,23 @@ void	*routine(void *arg)
 	while (!philo->data->sim)
 		;
 	philo->start = get_sim_time(0);
+	usleep(200);
 	while (philo->data->sim)
 	{
 		philo->status = S_THINK;
+		print_status(philo);
 		take_forks(philo, philo->data);
 		philo->status = S_EAT;
+		print_status(philo);
 		philo->last_meal = get_sim_time(philo->start);
-		get_usleep(philo, S_EAT);
+		if (is_fed(philo))
+			break ;
+		usleep(philo->data->time_eat * 1000);
 		pthread_mutex_unlock(philo->left);
 		pthread_mutex_unlock(philo->right);
 		philo->status = S_SLEEP;
-		get_usleep(philo, S_SLEEP);
+		print_status(philo);
+		usleep(philo->data->time_slp * 1000);
 	}
 	return (NULL);
 }

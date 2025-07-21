@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:29:43 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 01:52:01 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 02:07:04 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	print_status(t_philo *philo)
 
 	id = philo->id;
 	time = get_sim_time(philo->start);
-	if (philo->status == S_DEAD)
-		printf("%s%ld %d died %s\n", CLR_RED, time, id, CLR_CLOSE);
+	if (!philo->data->sim)
+		return ;
 	if (philo->status == S_FORK)
 		printf("%s%ld %d has taken a fork%s\n", CLR_WHITE, time, id, CLR_CLOSE);
 	if (philo->status == S_EAT)
