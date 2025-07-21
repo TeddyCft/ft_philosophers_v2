@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:29:43 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 13:34:23 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:09:19 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	print_status(t_philo *philo)
 	id = philo->id;
 	time = get_sim_time(philo->data->start);
 	if (philo->status == S_FORK)
-		printf("%ld %d has taken a for\n", time, id);
+		printf("%ld %d has taken a fork\n", time, id);
 	if (philo->status == S_EAT)
 	{
-		printf("%ld %d has taken a for\n", time, id);
+		printf("%ld %d has taken a fork\n", time, id);
 		printf("%ld %d is eating\n", time, id);
 	}
 	if (philo->status == S_SLEEP)
