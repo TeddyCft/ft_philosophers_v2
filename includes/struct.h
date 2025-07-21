@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:58:36 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 01:35:47 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:12:45 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data
 	pthread_mutex_t	**fork;
 	t_status		*status;
 	t_philo			*philos;
+	size_t			start;
 	size_t			time_slp;
 	size_t			time_eat;
 	size_t			time_die;

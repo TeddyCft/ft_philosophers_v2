@@ -6,32 +6,32 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:29:43 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 02:07:04 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:19:16 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	get_usleep(t_philo *philo, t_status stat)
-{
-	t_data	*data;
+// void	get_usleep(t_philo *philo, t_status stat)
+// {
+// 	t_data	*data;
 
-	data = philo->data;
-	if (stat == S_EAT)
-	{
-		if (data->time_die > data->time_eat)
-			usleep(data->time_eat * 1000);
-		else
-			usleep(data->time_die * 1000);
-	}
-	if (stat == S_SLEEP)
-	{
-		if (data->time_die > data->time_eat + data->time_slp)
-			usleep(data->time_slp * 1000);
-		else
-			usleep((data->time_die - data->time_eat) * 1000);
-	}
-}
+// 	data = philo->data;
+// 	if (stat == S_EAT)
+// 	{
+// 		if (data->time_die > data->time_eat)
+// 			usleep(data->time_eat * 1000);
+// 		else
+// 			usleep(data->time_die * 1000);
+// 	}
+// 	if (stat == S_SLEEP)
+// 	{
+// 		if (data->time_die > data->time_eat + data->time_slp)
+// 			usleep(data->time_slp * 1000);
+// 		else
+// 			usleep((data->time_die - data->time_eat) * 1000);
+// 	}
+// }
 
 void	print_status(t_philo *philo)
 {
@@ -39,7 +39,7 @@ void	print_status(t_philo *philo)
 	int			id;
 
 	id = philo->id;
-	time = get_sim_time(philo->start);
+	time = get_sim_time(philo->data->start);
 	if (!philo->data->sim)
 		return ;
 	if (philo->status == S_FORK)

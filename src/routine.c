@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 19:10:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 02:35:10 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:38:46 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 void	take_forks(t_philo *philo, t_data *data)
 {
-	int	is_last;
+	int			is_even;
 
-	is_last = (philo->id == data->nb_philo);
-	if (is_last)
+	(void) data;
+	is_even = philo->id % 2;
+	if (is_even)
 		pthread_mutex_lock(philo->left);
 	else
 		pthread_mutex_lock(philo->right);
 	philo->status = S_FORK;
 	print_status(philo);
-	if (is_last)
+	if (is_even)
 		pthread_mutex_lock(philo->right);
 	else
 		pthread_mutex_lock(philo->left);
@@ -49,7 +50,6 @@ void	*routine(void *arg)
 	philo = arg;
 	while (!philo->data->sim)
 		;
-	philo->start = get_sim_time(0);
 	usleep(200);
 	while (philo->data->sim)
 	{
@@ -58,7 +58,7 @@ void	*routine(void *arg)
 		take_forks(philo, philo->data);
 		philo->status = S_EAT;
 		print_status(philo);
-		philo->last_meal = get_sim_time(philo->start);
+		philo->last_meal = get_sim_time(philo->data->start);
 		if (is_fed(philo))
 			break ;
 		usleep(philo->data->time_eat * 1000);

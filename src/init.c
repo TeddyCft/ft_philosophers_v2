@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:24:06 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 01:55:23 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:13:05 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	init_simulation(int ac, char **av, t_data *data)
 	if (create_philos(data))
 		return (free(data->status), free(data->fork), 1);
 	launch_routines(data);
+	data->start = get_sim_time(0);
 	data->sim = 1;
 	return (0);
 }

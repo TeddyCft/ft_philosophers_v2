@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 01:33:15 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 02:27:33 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:14:56 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	should_die(t_philo *philo)
 {
 	size_t	time;
 
-	time = get_sim_time(philo->start);
+	time = get_sim_time(philo->data->start);
 	if (philo->data->time_die < time - philo->last_meal)
 	{
 		printf("%s%ld %d died %s\n", CLR_RED, time, philo->id, CLR_CLOSE);
