@@ -13,6 +13,7 @@ FLAGS = -Wall -Wextra -Werror -MMD -MP -g -pthread
 
 FILES =		args \
 			init \
+			monitoring \
 			routine \
 			utils \
 			utils/ft_isdigit \
