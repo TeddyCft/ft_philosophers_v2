@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:24:06 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 01:55:23 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:48:01 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	create_philos(t_data *data)
 		data->philos[i].id = i + 1;
 		data->philos[i].last_meal = 0;
 		data->philos[i].meal_count = 0;
+		data->philos[i].is_fed = 0;
 		data->philos[i].status = S_START;
 		data->philos[i].data = data;
 		data->philos[i].right = data->fork[i];
@@ -108,6 +109,7 @@ int	init_simulation(int ac, char **av, t_data *data)
 	if (create_philos(data))
 		return (free(data->status), free(data->fork), 1);
 	launch_routines(data);
+	data->start = get_sim_time(0);
 	data->sim = 1;
 	return (0);
 }
