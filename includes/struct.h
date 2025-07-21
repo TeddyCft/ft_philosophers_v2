@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:58:36 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 11:12:45 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:47:46 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	size_t			last_meal;
 	size_t			start;
+	int				is_fed;
 	int				id;
 	int				meal_count;
 }		t_philo;

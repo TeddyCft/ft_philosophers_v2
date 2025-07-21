@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 19:10:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 11:38:46 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:57:16 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,6 @@ void	take_forks(t_philo *philo, t_data *data)
 		pthread_mutex_lock(philo->left);
 }
 
-int	is_fed(t_philo *philo)
-{
-	philo->meal_count++;
-	if (philo->meal_count == philo->data->eat_goal)
-	{
-		philo->data->sim = 0;
-		printf("%sphilosopher %d had %d meals !%s\n", \
-			CLR_GREEN, philo->id, philo->meal_count, CLR_CLOSE);
-		return (1);
-	}
-	return (0);
-}
-
 void	*routine(void *arg)
 {
 	t_philo	*philo;
@@ -58,9 +45,10 @@ void	*routine(void *arg)
 		take_forks(philo, philo->data);
 		philo->status = S_EAT;
 		print_status(philo);
+		philo->meal_count++;
+		if (philo->meal_count == philo->data->eat_goal)
+			philo->is_fed = 1;
 		philo->last_meal = get_sim_time(philo->data->start);
-		if (is_fed(philo))
-			break ;
 		usleep(philo->data->time_eat * 1000);
 		pthread_mutex_unlock(philo->left);
 		pthread_mutex_unlock(philo->right);
