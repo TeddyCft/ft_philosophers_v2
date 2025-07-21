@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 14:57:20 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/18 18:51:50 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:46:57 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include "proto.h"
+# include <stdint.h>
 
 /////// COLORS //////
 

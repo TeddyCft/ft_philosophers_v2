@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 01:33:15 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/21 11:56:36 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:34:36 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	monitoring(t_data *data)
 {
 	int	i;
 
-	usleep(200);
+	usleep(500);
 	while (data->sim)
 	{
 		i = 0;
